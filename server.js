@@ -42,12 +42,12 @@ client.on("ready", () => {
 const getCatFact = async() => {
   const res = await fetch('https://meowfacts.herokuapp.com/')
   if (res.ok) {
-    const catfact = await res.json()
-    return catfact.data[0];
+    const catFact = await res.json()
+    return catFact.data[0];
+  } else {
+    return '**Not a cat fact** An error has occured. Please contact Vic => https://vicontiveros00.github.io/#contact'
   }
 }
-
-//console.log(await getCatFact());
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
