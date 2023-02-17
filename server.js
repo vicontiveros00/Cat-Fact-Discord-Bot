@@ -39,11 +39,21 @@ client.on("ready", () => {
   console.log(`${client.user.tag} active`);
 });
 
+const getCatFact = async() => {
+  const res = await fetch('https://meowfacts.herokuapp.com/')
+  if (res.ok) {
+    const catfact = await res.json()
+    return catfact.data[0];
+  }
+}
+
+//console.log(await getCatFact());
+
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === "catfact") {
-    await interaction.reply('Cat fact!');
+    await interaction.reply(await getCatFact());
   }
 });
 
