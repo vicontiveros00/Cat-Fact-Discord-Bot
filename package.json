@@ -1,16 +1,10 @@
 {
-  "name": "cat-bot",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3"

@@ -1,15 +1,15 @@
 FROM debian:bullseye as builder
 
-ARG NODE_VERSION=18.14.1
+ARG NODE_VERSION=18.12.1
 
 RUN apt-get update; apt install -y curl
 RUN curl https://get.volta.sh | bash
-RUN echo 'Meow! :3'
+RUN echo 'Meow 🐱'
 ENV VOLTA_HOME /root/.volta
 ENV PATH /root/.volta/bin:$PATH
 RUN volta install node@${NODE_VERSION}
 
-#######################################################################
+# start the server
 
 RUN mkdir /app
 WORKDIR /app
