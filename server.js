@@ -13,6 +13,9 @@ const TOKEN = process.env.TOKEN;
 const port = process.env.PORT || "8080";
 //here so fly doesnt yell at me
 
+const logInfo = true;
+//change to false if logging is not desired
+
 const commands = [
   {
     name: "catfact",
@@ -49,10 +52,18 @@ const getCatFact = async() => {
   }
 }
 
+const generateTimeStamp = () => {
+  const currentTimeDate = new Date();
+  return currentTimeDate.toString();
+}
+
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === "catfact") {
+    if (logInfo) {
+      console.log(`${interaction.user.name} requested a cat fact at ${generateTimeStamp()} in ${interaction.guild}`)
+    }
     await interaction.reply(await getCatFact());
   }
 });
