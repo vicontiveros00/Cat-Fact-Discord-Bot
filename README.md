@@ -21,4 +21,4 @@ Run `npm run dev` to start a development version of the server. (Auto restarts t
 Run `npm run start` to run the server normally.
 
 ### server.js
-On line 16 exists a variable `logInfo`. If true, each interaction, the user that called the interaction, the time stamp, and the guild will be logged to the console. If logging is not desired, change `logInfo` to `false`.
+On line 29 exists a variable `logInfo`. If true, each interaction, the user that called the interaction, the time stamp, and the guild will be logged to the console. If logging is not desired, change `logInfo` to `false`.

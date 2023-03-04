@@ -1,20 +1,34 @@
 import { REST, Routes, Client, GatewayIntentBits } from "discord.js";
 import { config } from 'dotenv';
 config();
+import express from 'express';
 
+//environment variables
+const CLIENT_ID = process.env.CLIENT_ID;
+const TOKEN = process.env.TOKEN;
+const port = process.env.PORT;
+
+//setup web server
+const app = express();
+
+app.get('/', (req, res) => {
+  return res.sendFile('index.html', {
+    root: './frontend'
+  })
+})
+
+app.listen(port, '0.0.0.0', (req, res) => {
+  console.log(`Listening on port ${port}....`)
+})
+
+//setup discord bot
 const client = new Client({ 
   intents: [GatewayIntentBits.Guilds] 
 });
 
-const CLIENT_ID = process.env.CLIENT_ID;
-
-const TOKEN = process.env.TOKEN;
-
-const port = process.env.PORT || "8080";
-//here so fly doesnt yell at me
-
 const logInfo = true;
 //change to false if logging is not desired
+
 
 const commands = [
   {
@@ -61,11 +75,12 @@ client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === "catfact") {
-    if (logInfo) {
-      console.log(`${interaction.user.name} requested a cat fact at ${generateTimeStamp()} in ${interaction.guild}`)
-    }
+    logInfo &&
+      console.log(`${interaction.user.name} requested a cat fact at ${generateTimeStamp()} in ${interaction.guild}`);
     await interaction.reply(await getCatFact());
   }
 });
+
+//ye
 
 client.login(TOKEN);
