@@ -12,8 +12,8 @@ const port = process.env.PORT;
 const app = express();
 
 app.get('/', (req, res) => {
-  return res.sendFile('index.html', {
-    root: './frontend'
+  return res.sendFile('index.txt', {
+    root: '.'
   })
 })
 
@@ -35,6 +35,10 @@ const commands = [
     name: "catfact",
     description: "Get a cat fact from the cat fact database",
   },
+  {
+    name: "ping",
+    description: "Test connection to Cat Fact Bot"
+  }
 ];
 
 const rest = new REST({ 
@@ -79,8 +83,10 @@ client.on("interactionCreate", async (interaction) => {
       console.log(`${interaction.user.name} requested a cat fact at ${generateTimeStamp()} in ${interaction.guild}`);
     await interaction.reply(await getCatFact());
   }
-});
 
-//ye
+  if (interaction.commandName === "ping") {
+    await interaction.reply('Pong!');
+  }
+});
 
 client.login(TOKEN);
