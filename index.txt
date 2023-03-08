@@ -6,4 +6,5 @@ Usage:
 Ensure bot has been granted permission to send messages in whatever channel you want catfacts in.
 
 Invite link:    https://discord.com/oauth2/authorize?client_id=1075769145909588041&permissions=2048&scope=bot
+API:            https://meowfacts.herokuapp.com/
 Source code:    https://github.com/vicontiveros00/Cat-Fact-Discord-Bot
